@@ -1,6 +1,6 @@
-from src.ch1.book_item import BookItem
-from src.ch1.book_lending import BookLending
-from src.ch1.user import User
+from src.library.oop.book_item import BookItem
+from src.library.oop.book_lending import BookLending
+from src.library.oop.user import User
 
 
 class Member(User):

@@ -1,8 +1,8 @@
 from typing import List
 
-from src.ch1.book import Book
-from src.ch1.book_item import BookItem
-from src.ch1.librarian import Librarian
+from src.library.oop.book import Book
+from src.library.oop.book_item import BookItem
+from src.library.oop.librarian import Librarian
 
 
 class Catalog:

@@ -1,5 +1,5 @@
-from src.ch1.book_item import BookItem
-from src.ch1.user import User
+from src.library.oop.book_item import BookItem
+from src.library.oop.user import User
 
 
 class UserWithBookItemRight(User):

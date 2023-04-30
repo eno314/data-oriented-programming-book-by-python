@@ -1,5 +1,5 @@
-from src.ch1.book_lending import BookLending
-from src.ch1.member import Member
+from src.library.oop.book_lending import BookLending
+from src.library.oop.member import Member
 
 
 class BookItem:
