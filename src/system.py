@@ -1,18 +1,18 @@
 from src.library import library
-from src.library.data.library import library_data
 
 
 class SystemValidity:
 
     @staticmethod
     def validate(pre_system_data, next_system_data):
-        pass
+        # TODO
+        return True
 
 
 class SystemState:
 
-    def __init__(self, system_data):
-        self._system_data = system_data
+    def __init__(self):
+        self._system_data = None
         self._previous_system_data = None
 
     def get(self):
@@ -29,12 +29,7 @@ class SystemState:
         self._system_data = self._previous_system_data
 
 
-class System:
-
-    def __init__(self):
-        self._system_state = SystemState(library_data)
-
-    def add_member(self, member):
-        pre_system_data = self._system_state.get()
-        next_system_data = library.add_member(pre_system_data, member)
-        self._system_state.commit(next_system_data)
+def add_member(system_state, member):
+    pre_system_data = system_state.get()
+    next_system_data = library.add_member(pre_system_data, member)
+    system_state.commit(pre_system_data, next_system_data)
