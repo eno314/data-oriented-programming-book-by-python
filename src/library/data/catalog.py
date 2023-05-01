@@ -4,7 +4,7 @@ catalog_data = {
             "isbn": "978-1779501127",
             "title": "Watchmen",
             "publicationYear": 1987,
-            "authors": ["alan-moore", "dave-gibbons"],
+            "authorIds": ["alan-moore", "dave-gibbons"],
             "bookItems": [
                 {
                     "id": "book-item-1",

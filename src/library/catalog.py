@@ -1,3 +1,6 @@
+from src.custom.get import my_get
+
+
 def search_book(catalog_data, search_query):
     """
     本を検索する
@@ -41,3 +44,19 @@ def get_book_lendings(catalog_data, member_id):
     :param member_id: 会員ID
     """
     pass
+
+
+def book_info(catalog_data, book):
+    return {
+        "title": my_get(book, ["title"]),
+        "isbn": my_get(book, ["isbn"]),
+        "authorNames": author_names(catalog_data, book),
+    }
+
+
+def author_names(catalog_data, book):
+    author_ids = my_get(book, ["authorIds"])
+    return [
+        my_get(catalog_data, ["authorsById", author_id, "name"])
+        for author_id in author_ids
+    ]
