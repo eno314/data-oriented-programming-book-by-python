@@ -32,3 +32,21 @@ def is_librarian(user_management_data, user_id):
     :param user_id: ユーザーID
     """
     pass
+
+
+def is_super_member(user_management_data, user_id):
+    """
+    特別会員かどうかを判定する
+    :param user_management_data: ユーザー管理の状態
+    :param user_id: ユーザーID
+    """
+    pass
+
+
+def is_vip_member(user_management_data, user_id):
+    """
+    VIP会員かどうかを判定する
+    :param user_management_data: ユーザー管理の状態
+    :param user_id: ユーザーID
+    """
+    pass

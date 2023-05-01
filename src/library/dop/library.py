@@ -17,7 +17,8 @@ def add_book_item(library_data, user_id, book_item_info):
     :param user_id: 司書ID
     :param book_item_info: 本の情報
     """
-    if user_management.is_librarian(library_data['user_management_data'], user_id):
+    if user_management.is_librarian(library_data['user_management_data'], user_id) \
+            or user_management.is_vip_member(library_data['user_management_data'], user_id):
         catalog.add_book_item(library_data['catalog_data'], book_item_info)
 
 
@@ -55,7 +56,8 @@ def get_book_lendings(library_data, user_id, member_id):
     :param user_id: 司書ID
     :param member_id: 会員ID
     """
-    if user_management.is_librarian(library_data['user_management_data'], user_id):
+    if user_management.is_librarian(library_data['user_management_data'], user_id) \
+            or user_management.is_super_member(library_data['user_management_data'], user_id):
         return catalog.get_book_lendings(library_data['catalog_data'], member_id)
     else:
         raise Exception("You don't have permission to get book lendings.")
