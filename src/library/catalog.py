@@ -51,7 +51,7 @@ def search_books_by_title(catalog_data, query):
     matching_books = [
         book
         for book in all_books
-        if query in py_.get(book, "title")
+        if query.lower() in py_.get(book, "title").lower()
     ]
     return [
         book_info(catalog_data, book)
@@ -60,15 +60,15 @@ def search_books_by_title(catalog_data, query):
 
 
 def book_info(catalog_data, book):
+    author_ids = py_.get(book, "authorIds")
     return {
         "title": py_.get(book, "title"),
         "isbn": py_.get(book, "isbn"),
-        "authorNames": author_names(catalog_data, book),
+        "authorNames": author_names(catalog_data, author_ids),
     }
 
 
-def author_names(catalog_data, book):
-    author_ids = py_.get(book, "authorIds")
+def author_names(catalog_data, author_ids):
     return [
         py_.get(catalog_data, ["authorsById", author_id, "name"])
         for author_id in author_ids
