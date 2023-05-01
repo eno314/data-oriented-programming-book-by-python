@@ -26,11 +26,11 @@ def test_add_member():
         "encryptedPassword": "dGVzdAo=",
     })
     actual = user_management.add_member(user_management_data, new_member)
-    expected = pmap({
+    expected = {
         "librariansByEmail": user_management_data["librariansByEmail"],
         "membersByEmail": {
             "samantha@hoge.com": user_management_data["membersByEmail"]["samantha@hoge.com"],
             "new@hoge.com": new_member,
         }
-    })
+    }
     assert expected == actual

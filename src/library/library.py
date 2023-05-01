@@ -1,6 +1,7 @@
 import json
 
 from pydash import py_
+from pyrsistent import PMap
 
 from src.library import catalog, user_management
 
@@ -92,3 +93,9 @@ def return_book(library_data, user_id, book_item_id):
     """
     if user_management.is_librarian(library_data['user_management_data'], user_id):
         catalog.return_book(library_data['catalog_data'], book_item_id)
+
+
+def add_member(library: PMap, member: PMap) -> PMap:
+    current_user_management = py_.get(library, "user_management")
+    next_user_management = user_management.add_member(current_user_management, member)
+    return library.set("user_management", next_user_management)

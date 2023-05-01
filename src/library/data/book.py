@@ -18,3 +18,7 @@ watchmen_book = pmap({
         }),
     ]),
 })
+
+books = pmap({
+    "978-1779501127": watchmen_book,
+})

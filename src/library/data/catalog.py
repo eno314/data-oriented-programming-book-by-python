@@ -1,11 +1,9 @@
 from pyrsistent import pmap, pvector
 
-from src.library.data.book import watchmen_book
+from src.library.data.book import books
 
 catalog_data = pmap({
-    "booksByIsbn": pmap({
-        "978-1779501127": watchmen_book,
-    }),
+    "booksByIsbn": books,
     "authorsById": pmap({
         "alan-moore": pmap({
             "name": "Alan Moore",
