@@ -1,4 +1,4 @@
-from src.library.dop import catalog, user_management
+from src.library import catalog, user_management
 
 
 def search_book(library_data, search_query):
