@@ -30,15 +30,15 @@ def login(user_management_data, login_info):
 
 
 def is_librarian(user_management_data, email):
-    return email in user_management_data['librariansByEmail']
+    return email in py_.get(user_management_data, "librariansByEmail")
 
 
 def is_super_member(user_management_data, email):
-    return user_management_data['membersByEmail'][email].get('isSuper') is True
+    return py_.get(user_management_data, ["membersByEmail", email, "isSuper"]) is True
 
 
-def is_vip_member(user_management_data, user_id):
-    return user_management_data['membersByEmail'][user_id].get('isVip') is True
+def is_vip_member(user_management_data, email):
+    return py_.get(user_management_data, ["membersByEmail", email, "isVIP"]) is True
 
 
 def add_member(user_management_data: PMap, member: PMap):

@@ -1,5 +1,7 @@
 import json
 
+from pydash import py_
+
 from src.library import catalog, user_management
 
 
@@ -13,7 +15,7 @@ def search_book(library_data, search_query):
 
 
 def search_books_by_title_json(library_data, search_query):
-    results = catalog.search_books_by_title(library_data['catalog'], search_query)
+    results = catalog.search_books_by_title(py_.get(library_data, "catalog"), search_query)
     return json.dumps(results)
 
 
