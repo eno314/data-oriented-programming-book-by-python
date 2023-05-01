@@ -25,28 +25,13 @@ def login(user_management_data, login_info):
     pass
 
 
-def is_librarian(user_management_data, user_id):
-    """
-    司書かどうかを判定する
-    :param user_management_data: ユーザー管理の状態
-    :param user_id: ユーザーID
-    """
-    pass
+def is_librarian(user_management_data, email):
+    return email in user_management_data['librariansByEmail']
 
 
-def is_super_member(user_management_data, user_id):
-    """
-    特別会員かどうかを判定する
-    :param user_management_data: ユーザー管理の状態
-    :param user_id: ユーザーID
-    """
-    pass
+def is_super_member(user_management_data, email):
+    return user_management_data['membersByEmail'][email].get('isSuper') is True
 
 
 def is_vip_member(user_management_data, user_id):
-    """
-    VIP会員かどうかを判定する
-    :param user_management_data: ユーザー管理の状態
-    :param user_id: ユーザーID
-    """
-    pass
+    return user_management_data['membersByEmail'][user_id].get('isVip') is True
