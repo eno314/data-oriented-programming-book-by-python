@@ -1,6 +1,3 @@
-from src.custom.get import my_get
-
-
 def search_book(catalog_data, search_query):
     """
     本を検索する
@@ -47,11 +44,11 @@ def get_book_lendings(catalog_data, member_id):
 
 
 def search_books_by_title(catalog_data, query):
-    all_books = my_get(catalog_data, ["booksByIsbn"]).values()
+    all_books = catalog_data["booksByIsbn"].values()
     matching_books = [
         book
         for book in all_books
-        if query in my_get(book, ["title"])
+        if query in book["title"]
     ]
     return [
         book_info(catalog_data, book)
@@ -61,15 +58,15 @@ def search_books_by_title(catalog_data, query):
 
 def book_info(catalog_data, book):
     return {
-        "title": my_get(book, ["title"]),
-        "isbn": my_get(book, ["isbn"]),
+        "title": book["title"],
+        "isbn": book["isbn"],
         "authorNames": author_names(catalog_data, book),
     }
 
 
 def author_names(catalog_data, book):
-    author_ids = my_get(book, ["authorIds"])
+    author_ids = book["authorIds"]
     return [
-        my_get(catalog_data, ["authorsById", author_id, "name"])
+        catalog_data["authorsById"][author_id]["name"]
         for author_id in author_ids
     ]
