@@ -1,3 +1,5 @@
+import json
+
 from src.library import catalog, user_management
 
 
@@ -8,6 +10,11 @@ def search_book(library_data, search_query):
     :param search_query: 検索クエリ
     """
     return catalog.search_book(library_data['catalog_data'], search_query)
+
+
+def search_books_by_title_json(library_data, search_query):
+    results = catalog.search_books_by_title(library_data['catalog'], search_query)
+    return json.dumps(results)
 
 
 def add_book_item(library_data, user_id, book_item_info):

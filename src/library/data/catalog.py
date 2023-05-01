@@ -1,23 +1,8 @@
+from src.library.data.book import watchmen_book
+
 catalog_data = {
     "booksByIsbn": {
-        "978-1779501127": {
-            "isbn": "978-1779501127",
-            "title": "Watchmen",
-            "publicationYear": 1987,
-            "authorIds": ["alan-moore", "dave-gibbons"],
-            "bookItems": [
-                {
-                    "id": "book-item-1",
-                    "libId": "nyc-central-lib",
-                    "isLent": True,
-                },
-                {
-                    "id": "book-item-2",
-                    "libId": "nyc-central-lib",
-                    "isLent": False,
-                },
-            ]
-        }
+        "978-1779501127": watchmen_book,
     },
     "authorsById": {
         "alan-moore": {
