@@ -43,7 +43,7 @@ def is_vip_member(user_management_data, email):
 
 def add_member(user_management_data: PMap, member: PMap):
     email = py_.get(member, 'email')
-    info_path = ("membersByEmail", email)
+    info_path = ["membersByEmail", email]
     if py_.has(user_management_data, info_path):
         raise ValueError('member already exists')
     return user_management_data.transform(info_path, member)
