@@ -1,3 +1,7 @@
+from pydash import py_
+from pyrsistent import PMap
+
+
 def block_member(user_management_data, member_id):
     """
     会員をブロックする
@@ -35,3 +39,11 @@ def is_super_member(user_management_data, email):
 
 def is_vip_member(user_management_data, user_id):
     return user_management_data['membersByEmail'][user_id].get('isVip') is True
+
+
+def add_member(user_management_data: PMap, member: PMap):
+    email = py_.get(member, 'email')
+    info_path = ("membersByEmail", email)
+    if py_.has(user_management_data, info_path):
+        raise ValueError('member already exists')
+    return user_management_data.transform(info_path, member)
