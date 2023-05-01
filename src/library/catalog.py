@@ -46,6 +46,19 @@ def get_book_lendings(catalog_data, member_id):
     pass
 
 
+def search_books_by_title(catalog_data, query):
+    all_books = my_get(catalog_data, ["booksByIsbn"]).values()
+    matching_books = [
+        book
+        for book in all_books
+        if query in my_get(book, ["title"])
+    ]
+    return [
+        book_info(catalog_data, book)
+        for book in matching_books
+    ]
+
+
 def book_info(catalog_data, book):
     return {
         "title": my_get(book, ["title"]),
