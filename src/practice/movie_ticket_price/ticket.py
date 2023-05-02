@@ -11,14 +11,20 @@ def calculate_price(
         user_data: PMap,
         screening_datetime_data: datetime.datetime
 ) -> PMap:
-    screening_datetime_type = _get_screening_datetime_type(screening_datetime_data)
-    return pydash.get(ticket_data, ['general', 'weekday', screening_datetime_type])
+    date_type = _get_screening_date_type(screening_datetime_data)
+    time_type = _get_screening_time_type(screening_datetime_data)
+    return pydash.get(ticket_data, ['general', date_type, time_type])
 
 
-def _get_screening_datetime_type(screening_datetime_data: datetime.datetime) -> str:
+def _get_screening_date_type(screening_datetime_data: datetime.datetime) -> str:
     if screening_datetime.is_movie_day(screening_datetime_data):
         return 'movie_day'
+    if screening_datetime.is_weekend(screening_datetime_data):
+        return 'weekend'
+    return 'weekday'
+
+
+def _get_screening_time_type(screening_datetime_data: datetime.datetime) -> str:
     if screening_datetime.is_late_show(screening_datetime_data):
         return 'late_show'
-    else:
-        return 'daytime'
+    return 'daytime'
