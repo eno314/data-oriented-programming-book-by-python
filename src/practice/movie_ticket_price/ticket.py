@@ -31,7 +31,10 @@ def _get_target_prices(
 def _get_user_types(user_data: PMap) -> PVector:
     types = ['general']
     if pydash.get(user_data, 'is_member', False):
-        types.append('member')
+        if user.is_senior_for_member(user_data):
+            types.append('senior_member')
+        else:
+            types.append('member')
     if user.is_senior(user_data):
         types.append('senior')
     return pvector(types)
