@@ -6,17 +6,17 @@ from pyrsistent import PMap, pvector, PVector
 from src.practice.movie_ticket_price import screening_datetime, user
 
 
-def calculate_price(
-        ticket_data: PMap,
+def calculate(
+        ticket_price_data: PMap,
         user_data: PMap,
         screening_datetime_data: datetime.datetime
 ) -> PMap:
-    target_prices = _get_target_prices(ticket_data, user_data, screening_datetime_data)
+    target_prices = _get_target_prices(ticket_price_data, user_data, screening_datetime_data)
     return min(target_prices, key=lambda price_data: price_data['price'])
 
 
 def _get_target_prices(
-        ticket_data: PMap,
+        ticket_price_data: PMap,
         user_data: PMap,
         screening_datetime_data: datetime.datetime
 ) -> PVector:
@@ -24,7 +24,7 @@ def _get_target_prices(
     for user_type in _get_user_types(user_data):
         for date_type in _get_screening_date_types(screening_datetime_data):
             time_type = _get_screening_time_type(screening_datetime_data)
-            prices.append(pydash.get(ticket_data, [user_type, date_type, time_type]))
+            prices.append(pydash.get(ticket_price_data, [user_type, date_type, time_type]))
     return pvector(prices)
 
 
