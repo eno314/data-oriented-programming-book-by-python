@@ -32,7 +32,8 @@ def _get_user_types(user_data: PMap) -> PVector:
     return pvector(list({
         _get_user_senior_type(user_data),
         _get_user_member_type(user_data),
-        _get_user_student_type(user_data)
+        _get_user_student_type(user_data),
+        _get_user_disability_type(user_data),
     }))
 
 
@@ -58,6 +59,15 @@ def _get_user_student_type(user_data: PMap) -> str:
     if pydash.get(user_data, 'is_middle_or_high_school', False):
         return 'middle_or_high_school_student'
     return 'student'
+
+
+def _get_user_disability_type(user_data: PMap) -> str:
+    if not pydash.get(user_data, 'has_disability', False):
+        return 'general'
+    student_type = _get_user_student_type(user_data)
+    if student_type in ['elementary_school_or_younger_student', 'middle_or_high_school_student']:
+        return 'younger_with_disability'
+    return 'general_with_disability'
 
 
 def _get_screening_date_types(screening_datetime_data: datetime.datetime) -> PVector:

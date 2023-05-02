@@ -77,6 +77,24 @@ def elementary_school_or_younger():
     })
 
 
+@pytest.fixture
+def general_with_disability_user():
+    return pmap({
+        'age': 35,
+        'has_disability': True,
+    })
+
+
+@pytest.fixture
+def middle_or_high_school_with_disability():
+    return pmap({
+        'age': 13,
+        'is_student': True,
+        'is_middle_or_high_school': True,
+        'has_disability': True,
+    })
+
+
 @pytest.mark.parametrize('screening_datetime, expected', [
     (screening_datetime_test_data['weekday_daytime'], pmap({'price': 1900, 'currency': 'JPY'})),
     (screening_datetime_test_data['weekday_late_show'], pmap({'price': 1400, 'currency': 'JPY'})),
@@ -162,3 +180,35 @@ def test_middle_or_high_school(ticket_price_data, middle_or_high_school, screeni
 ])
 def test_elementary_school_or_younger(ticket_price_data, elementary_school_or_younger, screening_datetime, expected):
     assert expected == ticket_price.calculate(ticket_price_data, elementary_school_or_younger, screening_datetime)
+
+
+@pytest.mark.parametrize('screening_datetime, expected', [
+    (screening_datetime_test_data['weekday_daytime'], pmap({'price': 1000, 'currency': 'JPY'})),
+    (screening_datetime_test_data['weekday_late_show'], pmap({'price': 1000, 'currency': 'JPY'})),
+    (screening_datetime_test_data['holiday_daytime'], pmap({'price': 1000, 'currency': 'JPY'})),
+    (screening_datetime_test_data['holiday_late_show'], pmap({'price': 1000, 'currency': 'JPY'})),
+    (screening_datetime_test_data['movie_day_daytime'], pmap({'price': 1000, 'currency': 'JPY'})),
+    (screening_datetime_test_data['movie_day_late_show'], pmap({'price': 1000, 'currency': 'JPY'})),
+])
+def test_general_with_disability(ticket_price_data, general_with_disability_user, screening_datetime, expected):
+    assert expected == ticket_price.calculate(ticket_price_data, general_with_disability_user, screening_datetime)
+
+
+@pytest.mark.parametrize('screening_datetime, expected', [
+    (screening_datetime_test_data['weekday_daytime'], pmap({'price': 900, 'currency': 'JPY'})),
+    (screening_datetime_test_data['weekday_late_show'], pmap({'price': 900, 'currency': 'JPY'})),
+    (screening_datetime_test_data['holiday_daytime'], pmap({'price': 900, 'currency': 'JPY'})),
+    (screening_datetime_test_data['holiday_late_show'], pmap({'price': 900, 'currency': 'JPY'})),
+    (screening_datetime_test_data['movie_day_daytime'], pmap({'price': 900, 'currency': 'JPY'})),
+    (screening_datetime_test_data['movie_day_late_show'], pmap({'price': 900, 'currency': 'JPY'})),
+])
+def test_middle_or_high_school_with_disability(
+        ticket_price_data,
+        middle_or_high_school_with_disability,
+        screening_datetime, expected
+):
+    assert expected == ticket_price.calculate(
+        ticket_price_data,
+        middle_or_high_school_with_disability,
+        screening_datetime
+    )

@@ -38,6 +38,16 @@ def get() -> PMap:
             'holiday': _datetime_price_data(1000, 1000),
             'movie_day': _datetime_price_data(1000, 1000),
         }),
+        'general_with_disability': pmap({
+            'weekday': _datetime_price_data(1000, 1000),
+            'holiday': _datetime_price_data(1000, 1000),
+            'movie_day': _datetime_price_data(1000, 1000),
+        }),
+        'younger_with_disability': pmap({
+            'weekday': _datetime_price_data(900, 900),
+            'holiday': _datetime_price_data(900, 900),
+            'movie_day': _datetime_price_data(900, 900),
+        }),
     })
 
 
