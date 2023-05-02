@@ -44,4 +44,9 @@ ticket_data = pmap({
         'weekend': datetime_price_data(1500, 1400),
         'movie_day': datetime_price_data(1200, 1200),
     }),
+    'middle_or_high_school_student': pmap({
+        'weekday': datetime_price_data(1000, 1000),
+        'weekend': datetime_price_data(1000, 1000),
+        'movie_day': datetime_price_data(1000, 1000),
+    }),
 })

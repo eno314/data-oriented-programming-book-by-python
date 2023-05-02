@@ -53,6 +53,8 @@ def _get_user_member_type(user_data: PMap) -> str:
 def _get_user_student_type(user_data: PMap) -> str:
     if not pydash.get(user_data, 'is_student', False):
         return 'general'
+    if pydash.get(user_data, 'is_middle_or_high_school', False):
+        return 'middle_or_high_school_student'
     return 'student'
 
 
