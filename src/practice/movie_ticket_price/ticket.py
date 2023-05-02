@@ -29,15 +29,31 @@ def _get_target_prices(
 
 
 def _get_user_types(user_data: PMap) -> PVector:
-    types = ['general']
-    if pydash.get(user_data, 'is_member', False):
-        if user.is_senior_for_member(user_data):
-            types.append('senior_member')
-        else:
-            types.append('member')
-    if user.is_senior(user_data):
-        types.append('senior')
-    return pvector(types)
+    return pvector(list({
+        _get_user_senior_type(user_data),
+        _get_user_member_type(user_data),
+        _get_user_student_type(user_data)
+    }))
+
+
+def _get_user_senior_type(user_data: PMap) -> str:
+    if not user.is_senior(user_data):
+        return 'general'
+    return 'senior'
+
+
+def _get_user_member_type(user_data: PMap) -> str:
+    if not pydash.get(user_data, 'is_member', False):
+        return 'general'
+    if user.is_senior_for_member(user_data):
+        return 'senior_member'
+    return 'member'
+
+
+def _get_user_student_type(user_data: PMap) -> str:
+    if not pydash.get(user_data, 'is_student', False):
+        return 'general'
+    return 'student'
 
 
 def _get_screening_date_types(screening_datetime_data: datetime.datetime) -> PVector:
