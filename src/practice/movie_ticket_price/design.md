@@ -25,22 +25,19 @@
 
 ### モデリング
 
-- 映画館(movie_theater)
-    - チケット(ticket)
-        - 上映日時(screening_datetime)
-        - 料金(price)
-    - ユーザー(user)
-        - 年齢(age)
-        - 学生フラグ(is_student)
-        - 中高生フラグ(is_middle_or_high_school)
-        - 小学生以下フラグ(is_elementary_school_or_younger)
-        - 障害者フラグ(has_disability)
-        - 会員フラグ(is_member)
+- チケット(ticket)
+    - 上映日時(screening_datetime)
+    - 料金(price)
+- ユーザー(user)
+    - 年齢(age)
+    - 学生フラグ(is_student)
+    - 中高生フラグ(is_middle_or_high_school)
+    - 小学生以下フラグ(is_elementary_school_or_younger)
+    - 障害者フラグ(has_disability)
+    - 会員フラグ(is_member)
 
 ## Functions
 
-- 映画館
-    - チケットの料金を計算する(calculate_ticket_price)
 - チケット
     - 料金を計算する(calculate_price)
 - 上映日時
