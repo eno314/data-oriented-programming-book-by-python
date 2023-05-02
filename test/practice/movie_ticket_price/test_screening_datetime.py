@@ -13,7 +13,7 @@ from src.practice.movie_ticket_price import screening_datetime
     (datetime.datetime(2023, 6, 1, 0, 0, 0), True),
 ])
 def test_is_movie_day(screening_datetime_data, expected):
-    return screening_datetime.is_movie_day(screening_datetime_data) == expected
+    assert screening_datetime.is_movie_day(screening_datetime_data) == expected
 
 
 @pytest.mark.parametrize('screening_datetime_data, expected', [
@@ -23,7 +23,7 @@ def test_is_movie_day(screening_datetime_data, expected):
     (datetime.datetime(2023, 5, 1, 0, 0, 0), False),
 ])
 def test_is_weekend(screening_datetime_data, expected):
-    return screening_datetime.is_weekend(screening_datetime_data) == expected
+    assert screening_datetime.is_weekend(screening_datetime_data) == expected
 
 
 @pytest.mark.parametrize('screening_datetime_data, expected', [
@@ -35,4 +35,4 @@ def test_is_weekend(screening_datetime_data, expected):
     (datetime.datetime(2023, 5, 1, 20, 0, 0), True),
 ])
 def test_is_late_show(screening_datetime_data, expected):
-    return screening_datetime.is_late_show(screening_datetime_data) == expected
+    assert screening_datetime.is_late_show(screening_datetime_data) == expected
