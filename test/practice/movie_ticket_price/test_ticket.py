@@ -28,6 +28,18 @@ def general_user():
     })
 
 
+@pytest.fixture
+def senior_user():
+    return pmap({
+        'age': 80,
+        'is_student': False,
+        'is_middle_or_high_school': False,
+        'is_elementary_school_or_younger': False,
+        'has_disability': False,
+        'is_member': False,
+    })
+
+
 @pytest.mark.parametrize('screening_datetime, expected', [
     (screening_datetime_test_data['weekday_daytime'], pmap({'price': 1900, 'currency': 'JPY'})),
     (screening_datetime_test_data['weekday_late_show'], pmap({'price': 1400, 'currency': 'JPY'})),
@@ -36,5 +48,17 @@ def general_user():
     (screening_datetime_test_data['movie_day_daytime'], pmap({'price': 1200, 'currency': 'JPY'})),
     (screening_datetime_test_data['movie_day_late_show'], pmap({'price': 1200, 'currency': 'JPY'})),
 ])
-def test_general_weekday_daytime(general_user, screening_datetime, expected):
+def test_general_user(general_user, screening_datetime, expected):
     assert expected == ticket.calculate_price(ticket_data, general_user, screening_datetime)
+
+
+@pytest.mark.parametrize('screening_datetime, expected', [
+    (screening_datetime_test_data['weekday_daytime'], pmap({'price': 1200, 'currency': 'JPY'})),
+    (screening_datetime_test_data['weekday_late_show'], pmap({'price': 1200, 'currency': 'JPY'})),
+    (screening_datetime_test_data['weekend_daytime'], pmap({'price': 1200, 'currency': 'JPY'})),
+    (screening_datetime_test_data['weekend_late_show'], pmap({'price': 1200, 'currency': 'JPY'})),
+    (screening_datetime_test_data['movie_day_daytime'], pmap({'price': 1200, 'currency': 'JPY'})),
+    (screening_datetime_test_data['movie_day_late_show'], pmap({'price': 1200, 'currency': 'JPY'})),
+])
+def test_senior_user(senior_user, screening_datetime, expected):
+    assert expected == ticket.calculate_price(ticket_data, senior_user, screening_datetime)
