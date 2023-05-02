@@ -11,12 +11,21 @@ def calculate_price(
         user_data: PMap,
         screening_datetime_data: datetime.datetime
 ) -> PMap:
+    target_prices = _get_target_prices(ticket_data, user_data, screening_datetime_data)
+    return min(target_prices, key=lambda price_data: price_data['price'])
+
+
+def _get_target_prices(
+        ticket_data: PMap,
+        user_data: PMap,
+        screening_datetime_data: datetime.datetime
+) -> PVector:
     prices = []
     for user_type in _get_user_types(user_data):
         for date_type in _get_screening_date_types(screening_datetime_data):
             time_type = _get_screening_time_type(screening_datetime_data)
             prices.append(pydash.get(ticket_data, [user_type, date_type, time_type]))
-    return min(prices, key=lambda price_data: price_data['price'])
+    return pvector(prices)
 
 
 def _get_user_types(user_data: PMap) -> PVector:
