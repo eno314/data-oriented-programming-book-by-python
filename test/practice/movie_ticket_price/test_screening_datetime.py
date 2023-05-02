@@ -22,8 +22,8 @@ def test_is_movie_day(screening_datetime_data, expected):
     (datetime.datetime(2023, 4, 30, 23, 59, 59), True),
     (datetime.datetime(2023, 5, 1, 0, 0, 0), False),
 ])
-def test_is_weekend(screening_datetime_data, expected):
-    assert screening_datetime.is_weekend(screening_datetime_data) == expected
+def test_is_holiday(screening_datetime_data, expected):
+    assert screening_datetime.is_holiday(screening_datetime_data) == expected
 
 
 @pytest.mark.parametrize('screening_datetime_data, expected', [

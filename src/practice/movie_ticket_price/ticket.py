@@ -64,8 +64,8 @@ def _get_screening_date_types(screening_datetime_data: datetime.datetime) -> PVe
     types = []
     if screening_datetime.is_movie_day(screening_datetime_data):
         types.append('movie_day')
-    if screening_datetime.is_weekend(screening_datetime_data):
-        types.append('weekend')
+    if screening_datetime.is_holiday(screening_datetime_data):
+        types.append('holiday')
     else:
         types.append('weekday')
     return pvector(types)

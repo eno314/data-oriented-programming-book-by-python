@@ -4,8 +4,7 @@
 
 ### 名詞・名詞句
 
-- チケット
-    - 料金
+- チケット料金
 - ユーザー
     - シネマシティズン
     - シネマシティズン（60才以上）
@@ -25,9 +24,21 @@
 
 ### モデリング
 
-- チケット(ticket)
-    - 上映日時(screening_datetime)
-    - 料金(price)
+- チケット料金(ticket_price)
+    - シネマシティズン(member)
+    - シニアシネマシティズン (senior_member)
+    - 一般 (general)
+    - シニア (senior)
+    - 学生 (student)
+    - 中・高校生 (middle_or_high_school_student)
+    - 幼児・小学生 (elementary_school_or_younger_student)
+    - 障がい者 (general_with_disability)
+    - 障がい者 (younger_with_disability)
+- 上映日時(screening_datetime)
+    - 平日(weekday)
+    - 土日祝(holiday)
+    - 映画の日(movie_day)
+    - レイトショー(late_show)
 - ユーザー(user)
     - 年齢(age)
     - 学生フラグ(is_student)
@@ -38,8 +49,8 @@
 
 ## Functions
 
-- チケット
-    - 料金を計算する(calculate_price)
+- チケット料金
+    - 計算する(calculate)
 - 上映日時
     - 土日祝か判定する(is_holiday)
     - 映画の日か判定する(is_movie_day)
