@@ -12,7 +12,7 @@ def calculate(
         screening_datetime_data: datetime.datetime
 ) -> PMap:
     target_prices = _get_target_prices(ticket_price_data, user_data, screening_datetime_data)
-    return min(target_prices, key=lambda price_data: price_data['price'])
+    return min(target_prices, key=lambda price_data: pydash.get(price_data, 'price'))
 
 
 def _get_target_prices(
